@@ -1,0 +1,22 @@
+stages:
+  - build
+  - test
+
+build the car:
+  stage: build
+  scripts:
+    - mkdir build
+    - cd build
+    - echo "engine" >> car.txt
+    - echo "full body" >> car.txt
+  artifacts:
+    paths:
+      - build/
+test the car:
+  stage: test
+  scripts:
+    - test -f build/car.txt
+    - cd build
+    - grep "engine" car.txt
+    - grep "full body" car.txt
+    
